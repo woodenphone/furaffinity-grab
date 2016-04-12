@@ -234,7 +234,9 @@ def check_full_view(text):
         return
 
     if 'var is_full = 1;' not in text:
-        raise Exception('Full view not found!')
+##        with open('check_full_view.html', 'w') as f:
+##            f.write(text)
+        raise Exception('Full view not found! (Is the account set to view full-size by default?)')
 
 
 def is_text_404(text):

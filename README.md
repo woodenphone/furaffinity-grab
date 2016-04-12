@@ -147,3 +147,16 @@ Are you a developer? Help write code for us! Look at our [developer documentatio
 ### Other problems
 
 Have an issue not listed here? Join us on IRC and ask! We can be found at irc.efnet.org #iceking.
+
+
+
+
+
+
+
+Account setup:
+Correct age setting on registration
+Mature content enabled
+Set fullview as default
+Date format ?
+

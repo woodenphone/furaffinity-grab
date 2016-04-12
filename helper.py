@@ -110,6 +110,7 @@ def main():
             raise Exception('Could not get secrets!')
 
         secrets_doc = json.loads(response.text)
+        print('secrets_doc: %s' % (secrets_doc))# TODO: REMOVEME
         username = secrets_doc['username']
         password = base64.b64decode(secrets_doc['password'].encode('ascii')).decode('ascii')
 
