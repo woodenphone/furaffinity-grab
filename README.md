@@ -155,8 +155,17 @@ Have an issue not listed here? Join us on IRC and ask! We can be found at irc.ef
 
 
 Account setup:
-Correct age setting on registration
+=========================
+Registration:
+Correct age setting on registration (Over 22 years old)
+
+Account settings:
 Mature content enabled
-Set fullview as default
-Date format ?
+Set fullview as default ("Full resolution")
+Timezone ?UTC+0?
+Style ?Do we care?
+
+Site settings:
+Date format ?fuzzy/full?
+
 

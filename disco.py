@@ -20,6 +20,8 @@ from logins import *# logins.py - contains a list of account dicts
 # FLASK magic
 from flask import Flask
 from flask import request
+from flask import abort
+
 app = Flask(__name__)
 
 
@@ -29,7 +31,13 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     """Ensure server works"""
-    return 'Disco server running.\r\n'
+    return 'Furaffinity disco server running.\r\n'
+
+
+@app.route('/debug')
+def debug():
+    """Ensure server works"""
+    raise Exception
 
 
 @app.route('/_fa_disco/api/get_secrets', methods = ["POST", "GET"])
@@ -41,7 +49,7 @@ def serve_furaffinity_logins():
     FURAFFINITY_LOGIN_DETAILS = sorted(FURAFFINITY_LOGIN_DETAILS, key=lambda k: k['last_used'])# http://stackoverflow.com/questions/72899/how-do-i-sort-a-list-of-dictionaries-by-values-of-the-dictionary-in-python
     account = FURAFFINITY_LOGIN_DETAILS[0]
     account['last_used'] = time.time()
-
+    # TODO: Disable sending out a username for x time after it was last used
     # Encode the login details
     login_data = {
         'username':account['username'],
@@ -56,10 +64,10 @@ def serve_furaffinity_logins():
 def serve_furaffinity_discovery():
     """Accept FA user discovery"""
     if request.method == 'POST':
-        data = request.form
+        data = dict(request.form)
         logging.debug('serve_furaffinity_discovery() got data: %s' % (data))
         print('serve_furaffinity_discovery() got data: %s' % (data))
-        with open('discovered.txt', 'a') as f:
+        with open('discovered.pickle', 'a') as f:# TODO FIXME
             #f.write(data)
             pickle.dump(data, f)
 
@@ -71,12 +79,12 @@ def serve_furaffinity_discovery():
 
 @app.route('/_fa_disco/api/user_private_discovery', methods = ["POST", "GET"])
 def serve_furaffinity_private_discovery():
-    """Accept FA user discovery"""
+    """Accept FA private user discovery"""
     if request.method == 'POST':
-        data = request.form
+        data = dict(request.form)
         logging.debug('serve_furaffinity_discovery() got data: %s' % (data))
         print('serve_furaffinity_discovery() got data: %s' % (data))
-        with open('private_discovered.txt', 'a') as f:
+        with open('private_discovered.pickle', 'a') as f:# TODO FIXME
             #f.write(data)
             pickle.dump(data, f)
 
