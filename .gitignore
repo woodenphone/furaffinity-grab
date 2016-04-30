@@ -2,4 +2,5 @@
 logins.py
 data/
 *.pyc
-
+*.json
+secret/
